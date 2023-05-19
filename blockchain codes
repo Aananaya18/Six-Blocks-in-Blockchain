@@ -1,0 +1,152 @@
+Six blocks in blockchain python
+import hashlib
+import datetime
+
+class Block:
+    def __init__(self, data, previous_hash):
+        self.timestamp = datetime.datetime.now()
+        self.data = data
+        self.previous_hash = previous_hash
+        self.hash = self.calculate_hash()
+
+    def calculate_hash(self):
+        sha = hashlib.sha256()
+        sha.update(str(self.timestamp).encode('utf-8') +
+                   str(self.data).encode('utf-8') +
+                   str(self.previous_hash).encode('utf-8'))
+        return sha.hexdigest()
+
+# Create the first block
+block1 = Block("Block 1 data", "Previous Hash")
+print("Block 1 Hash:", block1.hash)
+print("Previous Hash:", block1.previous_hash)
+print("Data:", block1.data)
+print("Timestamp:", block1.timestamp)
+print()
+
+# Create the second block
+block2 = Block("Block 2 data", block1.hash)
+print("Block 2 Hash:", block2.hash)
+print("Previous Hash:", block2.previous_hash)
+print("Data:", block2.data)
+print("Timestamp:", block2.timestamp)
+print()
+
+# Create the third block
+block3 = Block("Block 3 data", block2.hash)
+print("Block 3 Hash:", block3.hash)
+print("Previous Hash:", block3.previous_hash)
+print("Data:", block3.data)
+print("Timestamp:", block3.timestamp)
+print()
+
+# Create the fourth block
+block4 = Block("Block 4 data", block3.hash)
+print("Block 4 Hash:", block4.hash)
+print("Previous Hash:", block4.previous_hash)
+print("Data:", block4.data)
+print("Timestamp:", block4.timestamp)
+print()
+
+# Create the fifth block
+block5 = Block("Block 5 data", block4.hash)
+print("Block 5 Hash:", block5.hash)
+print("Previous Hash:", block5.previous_hash)
+print("Data:", block5.data)
+print("Timestamp:", block5.timestamp)
+print()
+
+# Create the sixth block
+block6 = Block("Block 6 data", block5.hash)
+print("Block 6 Hash:", block6.hash)
+print("Previous Hash:", block6.previous_hash)
+print("Data:", block6.data)
+print("Timestamp:", block6.timestamp)
+print()
+
+
+wallet tramsaction
+
+import hashlib
+import uuid
+
+class Wallet:
+    def __init__(self):
+        self.private_key = str(uuid.uuid4())
+        self.public_key = hashlib.sha256(self.private_key.encode('utf-8')).hexdigest()
+
+        self.balance = 0
+
+    def get_balance(self):
+        return self.balance
+
+    def add_balance(self, amount):
+        self.balance += amount
+
+    def send(self, recipient, amount):
+        if amount > self.balance:
+            print("Insufficient balance")
+            return False
+
+        recipient.add_balance(amount)
+        self.balance -= amount
+
+        print(f"{amount} sent to {recipient.public_key}")
+        return True
+
+if __name__ == '__main__':
+    wallet1 = Wallet()
+    wallet2 = Wallet()
+
+    wallet1.add_balance(1060)
+    wallet1.send(wallet2, 50)
+
+    print(f"Wallet 1 balance: {wallet1.get_balance()}")
+    print(f"Wallet 2 balance: {wallet2.get_balance()}")
+
+simpe smart contract
+
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+contract scontract {
+    function get_output()
+    public pure returns (string memory)
+    {
+        return "Message";
+    }
+}
+
+
+call to person get name samrt contract
+
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+contract Person {
+    string public name;
+
+    function setName(string memory newName) public
+    {
+        name = newName;
+    }
+        function getName() public view returns(string memory)
+        {
+            return name;
+        }
+}
+
+zepplin code
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+
+contract MyToken is ERC20, ERC20Burnable, Ownable {
+    constructor() ERC20("MyToken", "MTK") {}
+    function mint(address to, uint256 amount) public onlyOwner
+    {
+        _mint(to, amount);
+    }
+}
